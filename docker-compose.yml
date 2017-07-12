@@ -1,0 +1,35 @@
+# mysql:5.6.35
+# php:5.6.31-apache
+# redis:latest
+
+version: '2'
+services:
+  database:
+    image: mysql:5.6.35
+    container_name: magento1_database
+    build: ./builds/mysql/
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 4iouh8vLKKJED3LKj423
+      MYSQL_USER: aceSpider
+      MYSQL_PASSWORD: l3ejn2OUHV8312flv
+  web:
+    image: php:5.6.31-apache
+    container_name: magento1_web
+    volumes:
+      - ../application:/var/www/html
+    build: ./builds/web/
+    ports:
+      - 80:80
+      - 443:443
+    tty: true
+    depends_on:
+      - database
+      - redis
+  redis:
+    image: redis:latest
+    container_name: magento1_redis
+    build: ./builds/redis/
+    ports:
+      - 6379:6379
