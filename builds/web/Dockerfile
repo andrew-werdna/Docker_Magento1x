@@ -23,5 +23,6 @@ RUN docker-php-ext-configure \
     pdo_mysql \
     xsl \
     zip \
+    soap \
     opcache
 RUN a2enmod rewrite

@@ -1,2 +1,2 @@
-FROM mysql:5.6.35
+FROM mysql:latest
 RUN apt-get update -y
